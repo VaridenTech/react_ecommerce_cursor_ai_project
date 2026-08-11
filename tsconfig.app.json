@@ -4,7 +4,6 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    "types": ["vite/client"],
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
@@ -20,7 +19,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "typeRoots": ["./src/shared/types", "./node_modules/@types"]
   },
   "include": ["src"]
 }
