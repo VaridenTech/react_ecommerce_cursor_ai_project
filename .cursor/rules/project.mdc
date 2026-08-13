@@ -1,0 +1,30 @@
+---
+description: กติกาของโปรเจกต์ e-commerce นี้
+alwaysApply: true
+---
+
+# Stack
+- React 19 + TypeScript (strict) + Vite 8
+- react-router 8 (data mode), TanStack Query 5, axios
+- SCSS Modules เท่านั้น ห้ามใช้ inline style และห้ามใช้ CSS-in-JS
+- ฟอร์มใช้ react-hook-form + zod
+
+# โครงสร้างไฟล์
+- src/app/      — router, providers, layouts
+- src/pages/    — หนึ่งโฟลเดอร์ต่อหนึ่งหน้า พร้อม components/ ของหน้านั้น
+- src/features/ — โค้ดที่ผูกกับฟีเจอร์ (products, cart, checkout): api, queries, types, store
+- src/shared/   — ของที่ใช้ข้ามฟีเจอร์: components, hooks, utils, api, types
+- ห้ามสร้างโฟลเดอร์ระดับบนใหม่นอกเหนือจากนี้
+- component หนึ่งตัว = หนึ่งโฟลเดอร์: Name.tsx + Name.module.scss
+
+# กติกาการเขียนโค้ด
+- import ข้ามโฟลเดอร์ใช้ alias @/ เสมอ ห้ามใช้ ../../
+- ห้ามใช้ any และห้ามใช้ as เพื่อกลบ type error
+- ห้าม fetch ใน useEffect — server state ทุกตัวผ่าน TanStack Query
+- reducer ต้องเป็น pure function: ห้าม mutate state เดิม
+- ตั้งชื่อ: component = PascalCase, hook = useCamelCase, ไฟล์ util = camelCase.utils.ts
+
+# ขอบเขต
+- ห้ามติดตั้ง dependency ใหม่ถ้าไม่ได้สั่ง
+- ห้ามแก้ไฟล์ที่ไม่ได้ระบุในคำสั่ง
+- ห้ามเขียน comment อธิบายสิ่งที่โค้ดบอกอยู่แล้ว
