@@ -15,7 +15,7 @@ export const routes: RouteObject[] = [
     children: [
       { path: '/', element: <Home /> },
       { path: '/categories', element: <Category /> },
-      { path: '/products/:id', element: <Product /> },
+      { path: '/products/:id', element: <Product /> }, 
       { path: '/cart', element: <Cart /> },
       { path: '/checkout', element: <Checkout /> },
       { path: '/order/success', element: <OrderSuccess /> },
