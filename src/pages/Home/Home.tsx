@@ -45,12 +45,14 @@ const Home: React.FC = () => {
     }),
     enabled: currentCategory !== null,
   })
+
   const targetDate = useMemo(() => {
     const date = new Date()
     date.setDate(date.getDate() + 1) // Add 1 days
 
     return date.toISOString()
   }, [])
+
   const onProductClick = (productId: number) => {
     goToProductDetails(productId)
   }
