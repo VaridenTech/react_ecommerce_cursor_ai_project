@@ -25,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
   isLoading = false,
   className = "",
 }) => {
+
   return (
     <button
       type={type}
