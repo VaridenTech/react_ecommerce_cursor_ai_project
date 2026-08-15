@@ -10,7 +10,6 @@ export interface ProductListParams {
   page?: number
   limit?: number
 }
-
 export interface CategoryProductsParams extends ProductListParams {
   category: string
 }
