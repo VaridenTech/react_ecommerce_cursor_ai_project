@@ -1,6 +1,10 @@
 import { Link } from 'react-router'
+import CartSummary from '@/features/cart/components/CartSummary/CartSummary'
+import useProductRoute from '@/shared/hooks/useProductRoute'
 
 function Header() {
+  const { goToCartSummary } = useProductRoute()
+
   return (
     <header className="pt-25 pb-25">
       <div className="container">
@@ -22,6 +26,8 @@ function Header() {
               </li>
             </ul>
           </nav>
+
+          <CartSummary onIconClick={goToCartSummary} />
         </div>
       </div>
     </header>

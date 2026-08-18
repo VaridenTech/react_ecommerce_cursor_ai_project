@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
 import { useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
@@ -7,10 +7,13 @@ import CategoryBanner from '@/pages/Category/components/CategoryBanner/CategoryB
 import ProductImageGallery from '@/features/products/components/ProductImageGallery/ProductImageGallery'
 import { calculateOriginalPrice } from '@/shared/utils/price.utils'
 import ProductDetailInfo from '@/features/products/components/ProductDetailInfo/ProductDetailInfo'
+import AddToCartModalContent from '@/features/cart/components/AddToCartModalContent/AddToCartModalContent'
+import { useCart } from '@/features/cart/useCart'
 import { productQueries } from '@/features/products/queries'
 import ErrorMessage from '@/shared/components/ErrorMessage/ErrorMessage'
 
 const Product: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const { id } = useParams<{ id: string }>()
   const {
     data: productDetail,
@@ -20,9 +23,26 @@ const Product: React.FC = () => {
     ...productQueries.detail(id ?? ''),
     enabled: !!id,
   })
+  const { addToCart } = useCart()
+
+  const onOpenModal = () => setIsModalOpen(true)
+  const onCloseModal = () => setIsModalOpen(false)
 
   const onAddToCart = () => {
-    // TODO: the cart doesn't exist yet — we wire this up in lesson 23
+    if (productDetail) {
+      addToCart({
+        id: productDetail.id,
+        title: productDetail.title,
+        price: productDetail.price,
+        quantity: 1,
+        image: productDetail.thumbnail,
+        originalPrice: calculateOriginalPrice(
+          productDetail.price,
+          productDetail.discountPercentage,
+        ),
+      })
+      onOpenModal()
+    }
   }
 
   if (isLoading)
@@ -98,6 +118,8 @@ const Product: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <AddToCartModalContent isOpen={isModalOpen} onClose={onCloseModal} />
     </div>
   )
 }
