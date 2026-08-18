@@ -2,11 +2,12 @@ import { QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { type ReactNode } from 'react'
 import { queryClient } from './queryClient'
+import { CartProvider } from '@/features/cart/store/CartProvider'
 
 export function AppProviders({ children }: { children: ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <CartProvider>{children}</CartProvider>
       {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   )
