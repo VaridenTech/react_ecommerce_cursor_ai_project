@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { CART_STORAGE_KEY } from "@/features/cart/store/cartStorage";
 import { renderRoute } from "@/test/renderRoute";
